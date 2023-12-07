@@ -6,9 +6,9 @@ pipeline{
                 bat('mvn clean package -DskipTests=true');
             }
         }
-        stage('Tests'){
+        stage('Deploy'){
             steps{
-                bat('mvn test')
+                deploy adapters: [tomcat9(credentialsId: 'TomcatLogin', path: '', url: 'http://localhost:9000/')], contextPath: null, war: 'target/Calculadora.war'
             }
         }
     }
