@@ -2,9 +2,13 @@ pipeline{
     agent any
     stages{
         stage('Build'){
-            sleep(3);
             steps{
                 bat('mvn clean package -DskipTests=true');
+            }
+        }
+        stage('Tests'){
+            steps{
+                bat('mvn test')
             }
         }
     }
